@@ -10,12 +10,20 @@
          body{
          font-family: 'Hind', sans-serif;
          font-size: 15px;
-         line-height: 1.5em;
+         line-height: 1.6em;
          font-weight: 300;
+         letter-spacing: 1;
          }
          p{
          margin:0;
          }
+         b{
+            font-weight: 700;
+         }
+         section{
+            padding: .2em;
+         }
+        
          .intro{
          width: 50%;
          height: 100%;
@@ -25,23 +33,20 @@
          text-align: center;
          color: #ffffffb8;
          }
+         .intro-content{
+            width: 100%;
+         }
+         .intro-content h2{
+            padding-top: 1em
+         }
          .main{
+
          width: 50%;
          left: 50%;
          float: left;
          position: relative;
+         padding: 0;
          }
-
-         .picture-wrap{
-         height: 15rem;
-         margin: 3rem auto auto auto;
-         }
-           #picture{
-         width: 15rem;
-         height: 100%;
-         border-radius: 50%;
-         }
-
          @media only screen and (max-width: 600px) {
          /* For mobile phones: */
          .intro{
@@ -56,24 +61,22 @@
          width: 100%;
          left: 0%;
          position: relative;
-
          }
-          .picture-wrap{
-         height: 10rem;
-         margin: 3rem auto auto auto;
          }
-           #picture{
-         width: 10rem;
+         .picture-wrap{
+         height: 15.5rem;
+         margin-top: 10rem;
+         margin: 10rem auto auto auto;
+         }
+         #picture{
+         width: 15rem;
          height: 100%;
          border-radius: 50%;
          }
-         }
-         
-       
          .social-icon {
          display: block;
          margin: 0;
-         padding: 0;
+         padding: 10px;
          }
          .social-icon li {
          display: inline-block;
@@ -91,11 +94,8 @@
          border-radius: 100%;
          border: 2px solid rgba(255, 255, 255, .2);
          }
-         .summary{
-            color: #ffffff;
-         }
          .info{
-         margin:	2rem 1.2rem 1.2rem 1.2rem;
+         margin: 2em 3em 2em 3em;
 
          }
          /* The actual timeline (the vertical ruler) */
@@ -213,6 +213,31 @@
          }
          }
 
+
+         .summary p{
+            text-align: justify;
+         }
+         .experience{
+            background-color: #f9f9f9;
+         }
+         .skills{
+            background-color: #f9f9f9;
+         }
+
+         .skills li{
+            display: inline;
+            
+         }
+         
+         .skills h6 {
+            font-weight: 700 !important;
+            color: #00000089;
+         }
+
+         .contact h6{
+            font-weight: 700 !important;
+            color: #00000089;
+         }
          .experience h6{
             color:#ffffff89;
          }
@@ -227,41 +252,43 @@
             font-size: .8rem;
             color:#00000089;
          }
+
+
       </style>
    </head>
    <body>
       <div class="container-fluid">
          <div class="row">
             <div class="col-xs-6 col-sm-6 col-lg-6 intro" style="background-color:#000000;">
+               <div class="intro-content">
                <div class="picture-wrap">
                   <img id="picture" src="img/profile.jpeg">
                </div>
                <h2>
-                  Supongkiba Kichu 
+                  SUPONGKIBA KICHU
                </h2>
                <p>SiteOps Engineer</p>
-              
-               <div class="row info summary">
-                  <div class="col">
-                     <h4><b>What Am I About</b></h4>
-                     <p>I came from a tiny state called Nagaland in the North-Eastern region of India. <br>
-                        I am currently working as a Site Operations Engineer at LinkedIn, Bangalore. My responsibility as a SiteOps Engineer is to monitor and keep the LinkedIn sites/infrastructure Healthy, Up and Running 27*7*365 to give flawless and seamless experience to the users and develop tools to improve the ability to rapidly deploy and effectively monitor custom applications in a large-scale LUNIX environment.<br>
-                        I enjoy learning and exploring new stuffs, web development and automating boring manual repetitive tasks. 
-                     </p>
-                  </div>
-               </div>
-                <ul class="social-icon">
+               <ul class="social-icon">
                   <li><a href="#"><i class="fa fa-facebook"></i></a></li>
                   <li><a href="#"><i class="fa fa-twitter"></i></a></li>
                   <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
                   <li><a href="#"><i class="fa fa-instagram"></i></a></li>
                </ul>
             </div>
+            </div>
             <div class="col-xs-6 col-sm-6 col-lg-6 main">
-               
-               <div class="row info experience">
-                  <div class="col">
-                     <h4><b> Work Experience</b></h4>
+               <section class="summary">
+                 <div class="info">
+                     <h5><b>What Am I About</b></h5>
+                     <p>I came from a tiny state called Nagaland in the North-Eastern region of India.
+                        I am currently working as a Site Operations Engineer at LinkedIn, Bangalore. My responsibility as a SiteOps Engineer is to monitor and keep the LinkedIn sites/infrastructure Healthy, Up and Running 27*7*365 to give flawless and seamless experience to the users and develop tools to improve the ability to rapidly deploy and effectively monitor custom applications in a large-scale UNIX environment.
+                        I enjoy learning and exploring new stuffs, web development and automating boring manual repetitive tasks. 
+                     </p>
+              </div>
+               </section>
+               <section class="experience">
+                  <div class="info">
+                     <h5><b> Work Experience</b></h4>
                      <div class="timeline">
                         <div class="containers left">
                            <div class="content">
@@ -285,12 +312,12 @@
                         </div>
                      </div>
                   </div>
-               </div>
+               </section>
 
 
-               <div class="row info education">
-                  <div class="col">
-                     <h4><b>Education</b></h4>
+               <section class="education">
+                  <div class="info">
+                     <h5><b>Education</b></h5>
                         <p><span class="duration">2016</span><br><b>BTech, Computer Science and Engineering</b></p>
                         <h6>Bapuji Institute of Engineering and Technology, Davangere.</h6>
 
@@ -299,33 +326,51 @@
 
                         <p><span class="duration">2010</span><br><b>High School</b></p>
                         <h6>Children School, Mokokchung</h6>
+                     </div>
+               </section>
 
-
-                  </div>
-               </div>
-
-               <div class="row info skills">
-                  <div class="col">
-                     <h4><b>Skills</b></h4>
-                     <h6>Languages </h6>
+               <section class="skills">
+                  <div class="info">
+                     <h5><b>Skills</b></h5>
+                     <h6>Languages: </h6>
                      <ul>
-                        <li>C</li>
-                        <li>JavaScript</li>
-                        <li>Python</li>
-                        <li>TypeScript</li>
-                        <li>HTML</li>
+                        <li>C,</li>
+                        <li>JavaScript,</li>
+                        <li>Python,</li>
+                        <li>TypeScript,</li>
+                        <li>HTML,</li>
                         <li>CSS</li>
                      </ul>
-                      <h6>Networkings </h6>
+                      <h6>Networkings: </h6>
                      <ul>
-                        <li>DNS</li>
-                        <li>TCP/IP</li>
-                        <li>HTTP</li>
-                        <li>SSL</li>
+                        <li>DNS,</li>
+                        <li>TCP/IP,</li>
+                        <li>HTTP,</li>
+                        <li>SSL,</li>
                         <li>OSI Layers</li>
                      </ul>
+                     <h6>Others: </h6>
+                     <ul>
+                        <li>Digital Experience Monitoring,</li>
+                        <li>Rest API,</li>
+                        <li>Shell Script,</li>
+                        <li>Incident Managements,</li>
+                        <li>Software Development Lifecycle,</li>
+                        <li>Customer Technical Support</li>
+                     </ul>
                   </div>
-               </div>
+                  </section>
+
+                  <section class="contact">
+                     <div class="info">
+                         <h5><b>Contact</b></h5>
+                           <h6>Mobile: </h6>
+                           <p>+919738623798</p>
+                           <br>
+                           <h6>Email: </h6>
+                           <p>Supongkichu14@gmail.com</p>
+                     </div>
+                  </section>
 
             </div>
          </div>
