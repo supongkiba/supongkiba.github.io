@@ -8,16 +8,16 @@
       <link href="https://fonts.googleapis.com/css?family=Hind" rel="stylesheet">
       <style type="text/css">
          body{
-         font-family: 'Hind', sans-serif;
-         font-size: 15px;
-         line-height: 1.6em;
-         font-weight: 300;
-         letter-spacing: 1;
-         background-color: #000000;
-         color:#ffffff;
+            font-family: 'Hind', sans-serif;
+            font-size: 15px;
+            line-height: 1.6em;
+            font-weight: 300;
+            letter-spacing: 1;
+            background-color: #000000;
+            color:#ffffff;
          }
          p{
-         margin:0;
+            margin:0;
          }
          b{
             font-weight: 700;
@@ -25,14 +25,13 @@
          section{
             padding: .2em;
          }
-        
          .intro{
-         width: 50%;
-         height: 100%;
-         position: fixed;
-         height: 100vh;
-         text-align: center;
-         color: #ffffff;
+            width: 50%;
+            height: 100%;
+            position: fixed;
+            height: 100vh;
+            text-align: center;
+            color: #ffffff;
          }
          .intro p{
             color: #ffffff89;
@@ -44,179 +43,160 @@
             padding-top: 1em
          }
          .main{
-
-         width: 50%;
-         left: 50%;
-         float: left;
-         position: relative;
-         padding: 0;
+            width: 50%;
+            left: 50%;
+            float: left;
+            position: relative;
+            padding: 0;
          }
          @media only screen and (max-width: 600px) {
-         /* For mobile phones: */
-         .intro{
-         width: 100%;
-         background: green;
-         height: 100vh;
-         position: relative;
-         text-align: center;
-         color: #ffffffb8;
-         }
-         .main{
-         width: 100%;
-         left: 0%;
-         position: relative;
+            .intro{
+               width: 100%;
+               background: green;
+               height: 100vh;
+               position: relative;
+               text-align: center;
+               color: #ffffffb8;
+            }
+            .main{
+               width: 100%;
+               left: 0%;
+               position: relative;
          }
          }
          .picture-wrap{
-         height: 15.5rem;
-         margin-top: 10rem;
-         margin: 10rem auto auto auto;
+            height: 15.5rem;
+            margin-top: 10rem;
+            margin: 10rem auto auto auto;
          }
          #picture{
-         width: 15rem;
-         height: 100%;
-         border-radius: 50%;
-         object-fit: cover;
-         object-position: center;
+            width: 15rem;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: center;
          }
          .social-icon {
-         display: block;
-         margin: 0;
-         padding: 10px;
+            display: block;
+            margin: 0;
+            padding: 10px;
          }
          .social-icon li {
-         display: inline-block;
-         margin: 0 2px;
+            display: inline-block;
+            margin: 0 2px;
          }
          .social-icon li a {
-         padding: .5rem;
-         display: block;
-         font-size: 12px;
-         color: #ffffff;
-         width: 34px;
-         height: 34px;
-         line-height: 33px;
-         text-align: center;
-         border-radius: 100%;
-         border: 2px solid rgba(255, 255, 255, .2);
+            padding: .5rem;
+            display: block;
+            font-size: 12px;
+            color: #ffffff;
+            width: 34px;
+            height: 34px;
+            line-height: 33px;
+            text-align: center;
+            border-radius: 100%;
+            border: 2px solid rgba(255, 255, 255, .2);
          }
          .info{
-         margin: 2em 3em 2em 3em;
-
+            margin: 2em 3em 2em 3em;
          }
-         /* The actual timeline (the vertical ruler) */
          .timeline {
-         position: relative;
-         max-width: 1200px;
-         margin: 0 auto;
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
          }
-         /* The actual timeline (the vertical ruler) */
          .timeline::after {
-         content: '';
-         position: absolute;
-         width: 6px;
-         background-color: #ffffff;
-         top: 0;
-         bottom: 0;
-         left: 50%;
-         margin-left: -3px;
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: #ffffff;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
          }
-         /* Container around content */
          .containers {
-         padding: 10px 40px;
-         position: relative;
-         background-color: inherit;
-         width: 50%;
+            padding: 10px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
          }
-         /* The circles on the timeline */
          .containers::after {
-         content: '';
-         position: absolute;
-         width: 25px;
-         height: 25px;
-         right: -13px;
-         background-color: white;
-         border: 2px solid white;
-         top: 15px;
-         border-radius: 50%;
-         z-index: 1;
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            right: -13px;
+            background-color: white;
+            border: 2px solid white;
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
          }
-         /* Place the container to the left */
          .left {
-         left: 0;
+            left: 0;
          }
-         /* Place the container to the right */
          .right {
-         left: 50%;
+            left: 50%;
          }
-         /* Add arrows to the left container (pointing right) */
          .left::before {
-         content: " ";
-         height: 0;
-         position: absolute;
-         top: 22px;
-         width: 0;
-         z-index: 1;
-         right: 30px;
-         border: medium solid white;
-         border-width: 10px 0 10px 10px;
-         border-color: transparent transparent transparent white;
+            content: " ";
+            height: 0;
+            position: absolute;
+            top: 22px;
+            width: 0;
+            z-index: 1;
+            right: 30px;
+            border: medium solid white;
+            border-width: 10px 0 10px 10px;
+            border-color: transparent transparent transparent white;
          }
-         /* Add arrows to the right container (pointing left) */
          .right::before {
-         content: " ";
-         height: 0;
-         position: absolute;
-         top: 22px;
-         width: 0;
-         z-index: 1;
-         left: 30px;
-         border: medium solid white;
-         border-width: 10px 10px 10px 0;
-         border-color: transparent white transparent transparent;
+            content: " ";
+            height: 0;
+            position: absolute;
+            top: 22px;
+            width: 0;
+            z-index: 1;
+            left: 30px;
+            border: medium solid white;
+            border-width: 10px 10px 10px 0;
+            border-color: transparent white transparent transparent;
          }
-         /* Fix the circle for containers on the right side */
          .right::after {
-         left: -13px;
+            left: -13px;
          }
-         /* The actual content */
          .content {
-         padding-left: 1rem;
-         padding-right: 1rem;
-         padding-top: .5rem;
-         padding-bottom: .5rem;
-         background-color: #9294982b;
-         position: relative;
-         border-radius: 6px;
-         color:#ffffff;
+            padding-left: 1rem;
+            padding-right: 1rem;
+            padding-top: .5rem;
+            padding-bottom: .5rem;
+            background-color: #9294982b;
+            position: relative;
+            border-radius: 6px;
+            color:#ffffff;
          }
-         /* Media queries - Responsive timeline on screens less than 600px wide */
          @media screen and (max-width: 1350px) {
-         /* Place the timelime to the left */
-         .timeline::after {
-         left: 31px;
-         }
-         /* Full-width containers */
-         .containers {
-         width: 100%;
-         padding-left: 70px;
-         padding-right: 25px;
-         }
-         /* Make sure that all arrows are pointing leftwards */
-         .containers::before {
-         left: 60px;
-         border: medium solid white;
-         border-width: 10px 10px 10px 0;
-         border-color: transparent white transparent transparent;
-         }
-         /* Make sure all circles are at the same spot */
-         .left::after, .right::after {
-         left: 18px;
-         }
-         /* Make all right containers behave like the left ones */
-         .right {
-         left: 0%;
-         }
+            .timeline::after {
+               left: 31px;
+            }
+            .containers {
+               width: 100%;
+               padding-left: 70px;
+               padding-right: 25px;
+            }
+            .containers::before {
+               left: 60px;
+               border: medium solid white;
+               border-width: 10px 10px 10px 0;
+               border-color: transparent white transparent transparent;
+            }
+            .left::after, .right::after {
+               left: 18px;
+            }
+            .right {
+               left: 0%;
+            }
          }
          .summary p{
             text-align: justify;
@@ -225,12 +205,10 @@
             display: inline;
             
          }
-         
          .skills h6 {
             font-weight: 700 !important;
             color: #ffffff89;
          }
-
          .contact h6{
             font-weight: 700 !important;
             color: #ffffff89;
@@ -250,8 +228,6 @@
             font-size: .8rem;
             color:#ffffff89;
          }
-
-
       </style>
    </head>
    <body>
@@ -266,10 +242,10 @@
                   SUPONGKIBA KICHU
                </h2>
                <ul class="social-icon">
-                  <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                  <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                  <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                  <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                  <li><a href="https://www.facebook.com/supongkiba/"><i class="fa fa-facebook"></i></a></li>
+                  <li><a href="https://twitter.com/_supong_kichu"><i class="fa fa-twitter"></i></a></li>
+                  <li><a href="https://www.linkedin.com/in/supongkiba-kichu-611784ba/"><i class="fa fa-linkedin"></i></a></li>
+                  <li><a href="https://www.instagram.com/"><i class="fa fa-instagram"></i></a></li>
                </ul>
             </div>
             </div>
@@ -278,10 +254,10 @@
                  <div class="info">
                      <h5><b>What Am I About</b></h5>
                     <p> I am a Tech Professional/Engineer. 
-                    Passionate about Web Development, Automation, Site Relialbility Engineering and Web Performance. <br>
-                    I am currently working as a SiteOps Engineer at Linkedin responsible for keeping the site up and running 24*7*365 
-                    and to develop tools and softwares for improving our monitoring strategies and to reduce MTTR of every incidents. <br>
-                    I hail from the Indian state of Nagaland and currently residing in Bangalore city. <br>
+                    Passionate about Full Stack Web Development, Automation, Site Relialbility Engineering and Web Performance Analytics. 
+                    I am currently working as a SiteOps Engineer at Linkedin responsible for keeping the LinkedIn stack available and reliable 24*7*365 
+                    and to develop Tool/Softwares for improving our monitoring strategies, to reduce toil and to reduce MTTR of incidents. 
+                    I hail from the Indian state of Nagaland and currently residing in Bangalore city. 
                     I am a LEO!</p>
               </div>
                </section>
@@ -312,54 +288,57 @@
                      </div>
                   </div>
                </section>
-
-
-               <section class="education">
-                  <div class="info">
-                     <h5><b>Education</b></h5>
-                        <p><span class="duration">2016</span><br><b>BTech, Computer Science and Engineering</b></p>
-                        <h6>Bapuji Institute of Engineering and Technology, Davangere.</h6>
-
-                        <p><span class="duration">2012</span><br><b>Higher Secondary, Science(Physics, Maths, Chemistry, Biology)</b></p>
-                        <h6>Kohima Science College, Jotsoma</h6>
-
-                        <p><span class="duration">2010</span><br><b>High School</b></p>
-                        <h6>Children School, Mokokchung</h6>
-                     </div>
-               </section>
-
                <section class="skills">
                   <div class="info">
                      <h5><b>Skills</b></h5>
-                     <h6>Languages: </h6>
                      <ul>
                         <li>C,</li>
-                        <li>JavaScript,</li>
+                        <li>JavaScript(ES6),</li>
                         <li>Python,</li>
                         <li>TypeScript,</li>
+                        <li>Vue JS,</li>
+                        <li>JQuery,</li>
                         <li>HTML,</li>
-                        <li>CSS</li>
+                        <li>CSS,</li>
+                        <li>Bootstrap,</li>
+                        <li>Flask,</li>
+                        <li>Selenium,</li>
+                        <li>Shell Script,</li>
+                        <li>MySQL.</li>
                      </ul>
-                      <h6>Networkings: </h6>
                      <ul>
+                        <li>LINUX,</li>
                         <li>DNS,</li>
                         <li>TCP/IP,</li>
                         <li>HTTP,</li>
                         <li>SSL,</li>
-                        <li>OSI Layers</li>
+                        <li>SNMP,</li>
+                        <li>OSI Layers.</li>
                      </ul>
                      <h6>Others: </h6>
                      <ul>
-                        <li>Digital Experience Monitoring,</li>
+                        <li>Synthetic Monitoring,</li>
+                        <li>Real User Monitoring,</li>
+                        <li>Cloud Computing,</li>
+                        <li>GIT,</li>
                         <li>Rest API,</li>
-                        <li>Shell Script,</li>
+                        <li>Prometheus,</li>
                         <li>Incident Managements,</li>
+                        <li>CI/CD,</li>
                         <li>Software Development Lifecycle,</li>
-                        <li>Customer Technical Support</li>
+                        <li>Jira,</li>
+                        <li>Zendesk,</li>
+                        <li>Technical Support.</li>
                      </ul>
                   </div>
                   </section>
-
+                  <section class="education">
+                     <div class="info">
+                        <h5><b>Education</b></h5>
+                           <p><span class="duration">2016</span><br><b>BTech, Computer Science and Engineering</b></p>
+                           <h6>Bapuji Institute of Engineering and Technology</h6>
+                        </div>
+                  </section>
                   <section class="contact">
                      <div class="info">
                          <h5><b>Contact</b></h5>
@@ -370,7 +349,6 @@
                            <p>Supongkichu14@gmail.com</p>
                      </div>
                   </section>
-
             </div>
          </div>
       </div>
