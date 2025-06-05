@@ -23,7 +23,6 @@
             --border-hover: #555555;
             --shadow-dark: 0 4px 20px rgba(0, 255, 65, 0.1);
             --shadow-glow: 0 0 20px rgba(0, 255, 65, 0.2);
-            --matrix-green: #00ff41;
             --terminal-green: #39ff14;
         }
 
@@ -39,42 +38,6 @@
             color: var(--text-primary);
             line-height: 1.6;
             overflow-x: hidden;
-        }
-
-        .matrix-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -2;
-            overflow: hidden;
-        }
-
-        .matrix-char {
-            position: absolute;
-            color: var(--matrix-green);
-            font-family: 'Fira Code', monospace;
-            font-size: 14px;
-            opacity: 0.3;
-            animation: matrixRain 10s linear infinite;
-        }
-
-        @keyframes matrixRain {
-            0% {
-                transform: translateY(-100vh);
-                opacity: 0;
-            }
-            10% {
-                opacity: 0.3;
-            }
-            90% {
-                opacity: 0.3;
-            }
-            100% {
-                transform: translateY(100vh);
-                opacity: 0;
-            }
         }
 
         .code-bg {
@@ -836,7 +799,6 @@
     </style>
 </head>
 <body>
-    <div class="matrix-bg" id="matrixBg"></div>
     <div class="code-bg"></div>
 
     <section id="home" class="hero">
@@ -1166,25 +1128,6 @@
     </footer>
 
     <script>
-        // Matrix rain effect
-        function createMatrixRain() {
-            const chars = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
-            const matrixBg = document.getElementById('matrixBg');
-            
-            for (let i = 0; i < 50; i++) {
-                const char = document.createElement('div');
-                char.className = 'matrix-char';
-                char.textContent = chars[Math.floor(Math.random() * chars.length)];
-                char.style.left = Math.random() * 100 + '%';
-                char.style.animationDelay = Math.random() * 10 + 's';
-                char.style.animationDuration = (Math.random() * 10 + 5) + 's';
-                matrixBg.appendChild(char);
-            }
-        }
-
-        // Initialize matrix effect
-        createMatrixRain();
-
         // Smooth scrolling for social links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
