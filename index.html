@@ -1,567 +1,1262 @@
-<html>
-   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-   <head>
-      <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-      <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
-      <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-      <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-      <link href="https://fonts.googleapis.com/css?family=Fira+Code:300,400,700|Source+Code+Pro:300,400,700" rel="stylesheet">
-      <style type="text/css">
-         body{
-            font-family: 'Fira Code', 'Source Code Pro', monospace;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supongkiba Kichu - Software Engineer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #00ff41;
+            --secondary-color: #0066cc;
+            --accent-color: #ff6b35;
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #111111;
+            --bg-card: #1a1a1a;
+            --bg-elevated: #222222;
+            --text-primary: #ffffff;
+            --text-secondary: #cccccc;
+            --text-muted: #888888;
+            --text-accent: #00ff41;
+            --border-color: #333333;
+            --border-hover: #555555;
+            --shadow-dark: 0 4px 20px rgba(0, 255, 65, 0.1);
+            --shadow-glow: 0 0 20px rgba(0, 255, 65, 0.2);
+            --matrix-green: #00ff41;
+            --terminal-green: #39ff14;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .matrix-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            overflow: hidden;
+        }
+
+        .matrix-char {
+            position: absolute;
+            color: var(--matrix-green);
+            font-family: 'Fira Code', monospace;
             font-size: 14px;
-            line-height: 1.6em;
-            font-weight: 300;
-            letter-spacing: 0.5px;
-            background-color: #0a0a0a;
-            background-image: 
-               radial-gradient(circle at 1px 1px, #00ff41 1px, transparent 0);
-            background-size: 20px 20px;
-            color:#00ff41;
-            position: relative;
-         }
-         body::before {
-            content: '';
+            opacity: 0.3;
+            animation: matrixRain 10s linear infinite;
+        }
+
+        @keyframes matrixRain {
+            0% {
+                transform: translateY(-100vh);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.3;
+            }
+            90% {
+                opacity: 0.3;
+            }
+            100% {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+        }
+
+        .code-bg {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             background: 
-               linear-gradient(90deg, transparent 50%, rgba(0, 255, 65, 0.03) 50%),
-               linear-gradient(rgba(0, 255, 65, 0.03) 50%, transparent 50%);
-            background-size: 2px 2px;
-            pointer-events: none;
-            z-index: 1;
-         }
-         p{
-            margin:0;
-         }
-         b{
+                radial-gradient(circle at 20% 20%, rgba(0, 255, 65, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 107, 53, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 40% 70%, rgba(0, 102, 204, 0.05) 0%, transparent 50%);
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 2rem 0;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
             font-weight: 700;
-            color: #00ff41;
-            text-shadow: 0 0 5px #00ff41;
-         }
-         section{
-            padding: .2em;
-            position: relative;
-            z-index: 2;
-         }
-         .intro{
-            width: 50%;
-            height: 100%;
-            position: fixed;
-            height: 100vh;
-            text-align: center;
-            color: #00ff41;
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
-            border-right: 2px solid #00ff41;
-            box-shadow: inset -5px 0 10px rgba(0, 255, 65, 0.1);
-         }
-         .intro p{
-            color: #00cc33;
-         }
-         .intro-content{
-            width: 100%;
-         }
-         .intro-content h2{
-            padding-top: 1em;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            line-height: 1.1;
+            text-shadow: 0 0 30px rgba(0, 255, 65, 0.3);
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: var(--accent-color);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
             font-family: 'Fira Code', monospace;
-            text-shadow: 0 0 10px #00ff41;
+            text-shadow: 0 0 10px rgba(255, 107, 53, 0.5);
+        }
+
+        .hero-subtitle::before {
+            content: '> ';
+            color: var(--primary-color);
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .terminal-window {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            margin: 2rem 0;
+            box-shadow: var(--shadow-dark);
             position: relative;
-         }
-         .intro-content h2::after {
-            content: '_';
-            animation: blink 1s infinite;
-            color: #00ff41;
-         }
-         @keyframes blink {
-            0%, 50% { opacity: 1; }
-            51%, 100% { opacity: 0; }
-         }
-         .terminal-prompt::before {
-            content: '$ ';
-            color: #00ff41;
-            font-weight: bold;
-         }
-         .main{
-            width: 50%;
-            left: 50%;
-            position: fixed;
-            padding: 0;
-            border-left: 2px solid #00ff41;
-            background: rgba(0, 0, 0, 0.8);
-            height: 100vh;
-            overflow-y: auto;
-            transition: all 0.3s ease;
-         }
-         @media only screen and (max-width: 600px) {
-            .intro{
-               width: 100%;
-               background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
-               height: 100vh;
-               position: relative;
-               text-align: center;
-               color: #00ff41;
-               border-right: none;
-               border-bottom: 2px solid #00ff41;
-            }
-            .main{
-               width: 100%;
-               left: 0%;
-               position: relative;
-               border-left: none;
-               border-top: 2px solid #00ff41;
-         }
-         }
-         .picture-wrap{
-            height: 15.5rem;
-            margin-top: 10rem;
-            margin: 10rem auto auto auto;
-            position: relative;
-         }
-         #picture{
-            width: 15rem;
-            height: 100%;
-            border-radius: 50%;
-            object-fit: cover;
-            object-position: center;
-            border: 3px solid #00ff41;
-            box-shadow: 
-               0 0 20px rgba(0, 255, 65, 0.5),
-               0 0 40px rgba(0, 255, 65, 0.3),
-               0 0 60px rgba(0, 255, 65, 0.1);
-            transition: all 0.3s ease;
-            position: relative;
-         }
-         #picture::before {
+            overflow: hidden;
+        }
+
+        .terminal-window::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            border-radius: 50%;
-            background: 
-               linear-gradient(45deg, transparent 30%, rgba(0, 255, 65, 0.1) 50%, transparent 70%),
-               radial-gradient(circle at 30% 30%, rgba(0, 255, 65, 0.2) 2px, transparent 3px);
-            background-size: 20px 20px, 10px 10px;
-            animation: matrix-scan 3s linear infinite;
+            background: linear-gradient(45deg, transparent 30%, rgba(0, 255, 65, 0.05) 50%, transparent 70%);
             pointer-events: none;
-         }
-         #picture:hover {
+        }
+
+        .terminal-header {
+            background: var(--bg-elevated);
+            padding: 0.75rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .terminal-btn {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .btn-close { background: #ff5f57; }
+        .btn-minimize { background: #ffbd2e; }
+        .btn-maximize { background: #28ca42; }
+
+        .terminal-title {
+            margin-left: 1rem;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .terminal-content {
+            padding: 1.5rem;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.95rem;
+        }
+
+        .terminal-line {
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .terminal-prompt {
+            color: var(--terminal-green);
+            font-weight: 500;
+        }
+
+        .terminal-command {
+            color: var(--primary-color);
+        }
+
+        .terminal-output {
+            color: var(--text-secondary);
+        }
+
+        .typing-cursor {
+            display: inline-block;
+            background: var(--primary-color);
+            width: 2px;
+            height: 1em;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        .hero-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .profile-container {
+            position: relative;
+            width: 280px;
+            height: 280px;
+        }
+
+        .profile-image {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--primary-color);
+            box-shadow: 
+                0 0 50px rgba(0, 255, 65, 0.4),
+                inset 0 0 50px rgba(0, 255, 65, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 2;
+        }
+
+        .profile-image:hover {
             transform: scale(1.05);
             box-shadow: 
-               0 0 30px rgba(0, 255, 65, 0.7),
-               0 0 60px rgba(0, 255, 65, 0.5),
-               0 0 90px rgba(0, 255, 65, 0.3);
-         }
-         @keyframes matrix-scan {
-            0% { 
-               background-position: 0 0, 0 0;
-               opacity: 0.7;
-            }
-            50% { 
-               background-position: 20px 20px, 10px 10px;
-               opacity: 1;
-            }
-            100% { 
-               background-position: 40px 40px, 20px 20px;
-               opacity: 0.7;
-            }
-         }
-         .social-icon {
-            display: block;
-            margin: 0;
-            padding: 10px;
-         }
-         .social-icon li {
-            display: inline-block;
-            margin: 0 2px;
-         }
-         .social-icon li a {
-            padding: .5rem;
-            display: block;
-            font-size: 12px;
-            color: #00ff41;
-            width: 34px;
-            height: 34px;
-            line-height: 33px;
-            text-align: center;
-            border-radius: 100%;
-            border: 2px solid #00ff41;
-            transition: all 0.3s ease;
-            background: rgba(0, 255, 65, 0.1);
-         }
-         .social-icon li a:hover {
-            background: #00ff41;
-            color: #000;
-            box-shadow: 0 0 15px #00ff41;
-            transform: scale(1.1);
-         }
-         .info{
-            margin: 2em 3em 2em 3em;
-            background: rgba(0, 20, 5, 0.8);
-            padding: 1.5rem;
-            border: 1px solid #00ff41;
-            border-radius: 15px;
-            position: relative;
-         }
-         .info::before {
-            content: '/* ';
-            position: absolute;
-            top: 5px;
-            left: 10px;
-            color: #006622;
-            font-size: 12px;
-         }
-         .info::after {
-            content: ' */';
-            position: absolute;
-            bottom: 5px;
-            right: 10px;
-            color: #006622;
-            font-size: 12px;
-         }
-         .info h5 {
-            color: #00ff41;
-            text-shadow: 0 0 5px #00ff41;
-            margin-bottom: 1rem;
-         }
-         .timeline {
-            position: relative;
-            max-width: 1200px;
-            margin: 0 auto;
-         }
-         .timeline::after {
+                0 0 80px rgba(0, 255, 65, 0.6),
+                inset 0 0 80px rgba(0, 255, 65, 0.2);
+        }
+
+        .profile-container::before {
             content: '';
             position: absolute;
-            width: 6px;
-            background: linear-gradient(to bottom, #00ff41, #006622);
-            top: 0;
-            bottom: 0;
-            left: 50%;
-            margin-left: -3px;
-            box-shadow: 0 0 10px #00ff41;
-         }
-         .containers {
-            padding: 10px 40px;
-            position: relative;
-            background-color: inherit;
-            width: 50%;
-         }
-         .containers::after {
-            content: '';
-            position: absolute;
-            width: 25px;
-            height: 25px;
-            right: -13px;
-            background: radial-gradient(circle, #00ff41, #006622);
-            border: 2px solid #00ff41;
-            top: 15px;
+            top: -20px;
+            left: -20px;
+            right: -20px;
+            bottom: -20px;
+            border: 2px solid var(--primary-color);
             border-radius: 50%;
-            z-index: 1;
-            box-shadow: 0 0 10px #00ff41;
-         }
-         .left {
-            left: 0;
-         }
-         .right {
-            left: 50%;
-         }
-         .left::before {
-            content: " ";
-            height: 0;
+            opacity: 0.3;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .profile-container::after {
+            content: '';
             position: absolute;
-            top: 22px;
-            width: 0;
-            z-index: 1;
-            right: 30px;
-            border: medium solid #00ff41;
-            border-width: 10px 0 10px 10px;
-            border-color: transparent transparent transparent #00ff41;
-         }
-         .right::before {
-            content: " ";
-            height: 0;
-            position: absolute;
-            top: 22px;
-            width: 0;
-            z-index: 1;
-            left: 30px;
-            border: medium solid #00ff41;
-            border-width: 10px 10px 10px 0;
-            border-color: transparent #00ff41 transparent transparent;
-         }
-         .right::after {
-            left: -13px;
-         }
-         .content {
-            padding-left: 1rem;
-            padding-right: 1rem;
-            padding-top: .5rem;
-            padding-bottom: .5rem;
-            background: rgba(0, 20, 5, 0.9);
+            top: -40px;
+            left: -40px;
+            right: -40px;
+            bottom: -40px;
+            border: 1px solid var(--primary-color);
+            border-radius: 50%;
+            opacity: 0.1;
+            animation: pulse 3s ease-in-out infinite reverse;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 0.3;
+            }
+            50% {
+                transform: scale(1.1);
+                opacity: 0.1;
+            }
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.3s ease;
             position: relative;
-            border-radius: 15px;
-            color:#00ff41;
-            border: 1px solid #00ff41;
-            box-shadow: 0 0 10px rgba(0, 255, 65, 0.3);
-         }
-         @media screen and (max-width: 1350px) {
-            .timeline::after {
-               left: 31px;
-            }
-            .containers {
-               width: 100%;
-               padding-left: 70px;
-               padding-right: 25px;
-            }
-            .containers::before {
-               left: 60px;
-               border: medium solid #00ff41;
-               border-width: 10px 10px 10px 0;
-               border-color: transparent #00ff41 transparent transparent;
-            }
-            .left::after, .right::after {
-               left: 18px;
-            }
-            .right {
-               left: 0%;
-            }
-         }
-         .summary p{
-            text-align: justify;
-         }
-         .skills li{
-            display: inline;
-            background: rgba(0, 255, 65, 0.1);
-            padding: 2px 6px;
-            margin: 2px;
-            border-radius: 8px;
-            border: 1px solid #006622;
-         }
-         .skills h6 {
-            font-weight: 700 !important;
-            color: #00cc33;
-            text-shadow: 0 0 5px #00cc33;
-         }
-         .contact h6{
-            font-weight: 700 !important;
-            color: #00cc33;
-            text-shadow: 0 0 5px #00cc33;
-         }
-         .experience h6{
-            color:#00cc33;
-            text-shadow: 0 0 3px #00cc33;
-         }
-         .duration{
-            font-size: .8rem;
-            color:#00ff41;
-            background: rgba(0, 255, 65, 0.1);
-            padding: 2px 6px;
-            border-radius: 8px;
-            border: 1px solid #006622;
-         }
-          .education h6{
-            color:#00cc33;
-            font-size: 0.9rem;
-            text-shadow: 0 0 3px #00cc33;
-         }
-        .education .duration{
-            font-size: .8rem;
-            color:#00ff41;
-            background: rgba(0, 255, 65, 0.1);
-            padding: 2px 6px;
-            border-radius: 8px;
-            border: 1px solid #006622;
-         }
-         .ascii-art {
-            font-family: 'Fira Code', monospace;
-            font-size: 8px;
-            color: #006622;
-            white-space: pre;
+            overflow: hidden;
+        }
+
+        .social-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 65, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .social-link:hover {
+            background: var(--bg-elevated);
+            color: var(--primary-color);
+            border-color: var(--primary-color);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .social-link:hover::before {
+            left: 100%;
+        }
+
+        .section {
+            padding: 5rem 0;
+            position: relative;
+        }
+
+        .section-header {
             text-align: center;
-            margin: 10px 0;
-         }
-      </style>
-   </head>
-   <body>
-      <div class="container-fluid">
-         <div class="row">
-            <div class="col-xs-6 col-sm-6 col-lg-6 intro" id="intro-panel" style="background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);">
-               <div class="intro-content">
-               <div class="ascii-art">
-    _____ _   _ ____   ___  _   _  _____ 
-  / ____| | | |  _ \ / _ \| \ | |/ ____|
- | (___ | | | | |_) | | | |  \| | |  __ 
-  \___ \| | | |  _ /| | | | . ` | | |_ |
-  ____) | |_| | |   | |_| | |\  | |__| |
- |_____/ \___/|_|    \___/|_| \_|\_____|
-               </div>
-               <div class="picture-wrap">
-                  <img id="picture" src="img/profile.jpg">
-               </div>
-               <h2 class="terminal-prompt">
-                  SUPONGKIBA KICHU
-               </h2>
-               <p style="font-family: 'Fira Code', monospace;">[SOFTWARE_ENGINEER]</p>
-               <ul class="social-icon">
-                  <li><a href="https://www.facebook.com/supongkiba/"><i class="fa fa-facebook"></i></a></li>
-                  <li><a href="https://twitter.com/_supong_kichu"><i class="fa fa-twitter"></i></a></li>
-                  <li><a href="https://www.linkedin.com/in/supong/"><i class="fa fa-linkedin"></i></a></li>
-                  <li><a href="https://www.instagram.com/"><i class="fa fa-instagram"></i></a></li>
-               </ul>
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            font-family: 'Fira Code', monospace;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(0, 255, 65, 0.05) 50%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-color);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .card:hover::before {
+            opacity: 1;
+        }
+
+        .card-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--bg-primary);
+            margin-bottom: 1.5rem;
+            font-size: 1.25rem;
+            box-shadow: 0 0 20px rgba(0, 255, 65, 0.3);
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.75rem;
+            font-family: 'Fira Code', monospace;
+        }
+
+        .card-content {
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-category::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(0, 255, 65, 0.03) 50%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .skill-category:hover::before {
+            opacity: 1;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-3px);
+            border-color: var(--primary-color);
+            box-shadow: 0 10px 30px rgba(0, 255, 65, 0.15);
+        }
+
+        .skill-category h3 {
+            color: var(--text-primary);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            font-family: 'Fira Code', monospace;
+            position: relative;
+            z-index: 1;
+        }
+
+        .skill-category h3::before {
+            content: '// ';
+            color: var(--primary-color);
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .skill-tag {
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 0.5rem 1rem;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+            font-family: 'Fira Code', monospace;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-tag::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 65, 0.2), transparent);
+            transition: left 0.4s ease;
+        }
+
+        .skill-tag:hover {
+            background: var(--primary-color);
+            color: var(--bg-primary);
+            border-color: var(--primary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 255, 65, 0.3);
+        }
+
+        .skill-tag:hover::before {
+            left: 100%;
+        }
+
+        .experience-section {
+            background: var(--bg-secondary);
+            position: relative;
+        }
+
+        .experience-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                repeating-linear-gradient(
+                    90deg,
+                    transparent,
+                    transparent 98px,
+                    rgba(0, 255, 65, 0.03) 100px
+                );
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -15px;
+            top: 2rem;
+            width: 6px;
+            height: calc(100% - 4rem);
+            background: linear-gradient(to bottom, var(--primary-color), var(--secondary-color));
+            border-radius: 3px;
+            box-shadow: 0 0 10px rgba(0, 255, 65, 0.5);
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            left: -21px;
+            top: 1.75rem;
+            width: 18px;
+            height: 18px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            box-shadow: 0 0 15px rgba(0, 255, 65, 0.7);
+        }
+
+        .timeline-item:hover {
+            transform: translateX(15px);
+            border-color: var(--primary-color);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .timeline-date {
+            color: var(--primary-color);
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            font-family: 'Fira Code', monospace;
+            text-shadow: 0 0 5px rgba(0, 255, 65, 0.5);
+        }
+
+        .timeline-role {
+            color: var(--text-primary);
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-company {
+            color: var(--accent-color);
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-description ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .timeline-description li {
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+            padding-left: 2rem;
+            position: relative;
+        }
+
+        .timeline-description li::before {
+            content: '▶';
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+            font-size: 0.8rem;
+        }
+
+        .contact-section {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(0, 255, 65, 0.05) 50%, transparent 70%);
+            opacity: 0.5;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.5rem;
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 65, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .contact-item:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 255, 65, 0.2);
+        }
+
+        .contact-item:hover::before {
+            left: 100%;
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--bg-primary);
+            flex-shrink: 0;
+            box-shadow: 0 0 20px rgba(0, 255, 65, 0.3);
+        }
+
+        .contact-info h4 {
+            color: var(--text-primary);
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+            font-family: 'Fira Code', monospace;
+        }
+
+        .contact-info p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 3rem 0;
+            border-top: 1px solid var(--border-color);
+            margin-top: 5rem;
+            background: var(--bg-secondary);
+            position: relative;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                repeating-linear-gradient(
+                    45deg,
+                    transparent,
+                    transparent 98px,
+                    rgba(0, 255, 65, 0.02) 100px
+                );
+        }
+
+        .footer p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            font-family: 'Fira Code', monospace;
+            position: relative;
+            z-index: 1;
+        }
+
+        @media (max-width: 768px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                text-align: center;
+            }
+            
+            .hero-content {
+                order: 2;
+            }
+            
+            .hero-image {
+                order: 1;
+                margin-bottom: 1rem;
+                margin-top: 2rem;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.5rem;
+                margin-bottom: 0.5rem;
+            }
+            
+            .hero-subtitle {
+                margin-bottom: 1rem;
+            }
+            
+            .hero-description {
+                margin-top: 1rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .profile-container {
+                width: 200px;
+                height: 200px;
+            }
+            
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 1rem;
+            }
+            
+            .hero {
+                padding: 2rem 0;
+            }
+            
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            
+            .section {
+                padding: 3rem 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="matrix-bg" id="matrixBg"></div>
+    <div class="code-bg"></div>
+
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <h1>Supongkiba Kichu</h1>
+                    <p class="hero-subtitle">Software Engineer</p>
+                    <p class="hero-description">
+                        Passionate Senior Engineer with 8+ years of experience in Reliability Engineering, 
+                        Large-scale distributed systems, Observability, Monitoring, Operations and Incident Management. 
+                        Proven expertise in designing and building end-to-end scalable observability solutions.
+                    </p>
+                    
+                    <div class="terminal-window">
+                        <div class="terminal-header">
+                            <div class="terminal-btn btn-close"></div>
+                            <div class="terminal-btn btn-minimize"></div>
+                            <div class="terminal-btn btn-maximize"></div>
+                            <div class="terminal-title">supong@localhost: ~</div>
+                        </div>
+                        <div class="terminal-content">
+                            <div class="terminal-line">
+                                <span class="terminal-prompt">➜ ~</span>
+                                <span class="terminal-command">whoami</span>
+                            </div>
+                            <div class="terminal-line">
+                                <span class="terminal-output">Senior Site Reliability Engineer @ LinkedIn</span>
+                            </div>
+                            <div class="terminal-line">
+                                <span class="terminal-prompt">➜ ~</span>
+                                <span class="terminal-command">cat skills.txt</span>
+                            </div>
+                            <div class="terminal-line">
+                                <span class="terminal-output">Distributed Systems • Observability • Python • JavaScript</span>
+                            </div>
+                            <div class="terminal-line">
+                                <span class="terminal-prompt">➜ ~</span>
+                                <span class="terminal-command">echo $PASSION</span>
+                            </div>
+                            <div class="terminal-line">
+                                <span class="terminal-output">Building reliable systems that scale</span>
+                            </div>
+                            <div class="terminal-line">
+                                <span class="terminal-prompt">➜ ~</span>
+                                <span class="terminal-command">uptime</span>
+                            </div>
+                            <div class="terminal-line">
+                                <span class="terminal-output">8+ year of building Software...</span>
+                                <span class="typing-cursor"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/in/supong/" class="social-link" title="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://github.com/supongkiba" class="social-link" title="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://twitter.com/_supong_kichu" class="social-link" title="Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="mailto:supongkichu14@gmail.com" class="social-link" title="Email">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <div class="profile-container">
+                        <img src="img/profile.jpg" alt="Supongkiba Kichu" class="profile-image">
+                    </div>
+                </div>
             </div>
+        </div>
+    </section>
+
+    <section id="experience" class="section experience-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Experience</h2>
+                <p class="section-subtitle">
+                    Building reliable, scalable systems and leading engineering initiatives across various domains
+                </p>
             </div>
-            <div class="col-xs-6 col-sm-6 col-lg-6 main" id="main-panel">
-               <section class="summary">
-                  <div class="info">
-                  <h5><b>// Summary</b></h5>
-                    <p>Passionate Senior Engineer with 8+ years of experience in Reliability Engineering, Large-scale distributed systems, Observability, Monitoring, Operations and Incident Management. Proven expertise in designing and building end-to-end scalable observability solutions, building resilient architectures, and improving system reliability. Adept at troubleshooting critical incidents and driving cross functional initiatives to enhance platform health at scale.</p>
-              </div>
-               </section>
-               <section class="experience">
-                  <div class="info">
-                     <h5><b>// Work Experience</b></h5>
-                     <div class="timeline">
-                        <div class="containers left">
-                           <div class="content">
-                              <p><span class="duration">Oct 2021 - Present</span><br><b>Senior Site Reliability Engineer, Infra</b></p>
-                              <h6>LinkedIn | Bangalore</h6>
-                              <ul style="font-size: 0.85rem; margin-top: 0.5rem;">
-                                 <li>Designed capacity management platform reducing infrastructure costs significantly</li>
-                                 <li>Developed observability tools reducing detection time for system failures</li>
-                                 <li>Implemented distributed tracing for critical microservices</li>
-                                 <li>Built monitoring dashboards and data sources for centralized systems</li>
-                                 <li>Led incident response and cross-functional engineering projects</li>
-                              </ul>
-                           </div>
-                        </div>
-                        <div class="containers right">
-                           <div class="content">
-                              <p><span class="duration">Feb 2019 - Sep 2021</span><br><b>Site Reliability Engineer, Infra</b></p>
-                               <h6>LinkedIn | Bangalore</h6>
-                               <ul style="font-size: 0.85rem; margin-top: 0.5rem;">
-                                 <li>Built automated testing systems for traffic management</li>
-                                 <li>Performed system upgrades and migrations across multiple services</li>
-                                 <li>Developed alerting frameworks for anomaly detection</li>
-                                 <li>Created monitoring platforms with real-time analytics</li>
-                                 <li>Built automation tools for network monitoring and alerting</li>
-                              </ul>
-                           </div>
-                        </div>
-                        <div class="containers left">
-                           <div class="content">
-                              <p><span class="duration">Nov 2017 - Jan 2019</span><br><b>Technical Services Engineer</b></p>
-                               <h6>Catchpoint Systems | Bangalore</h6>
-                               <ul style="font-size: 0.85rem; margin-top: 0.5rem;">
-                                 <li>Developed performance monitoring solutions for web applications</li>
-                                 <li>Built monitoring integrations using various protocols and tools</li>
-                                 <li>Integrated platform tools with configuration management systems</li>
-                                 <li>Developed APIs for test automation and management</li>
-                              </ul>
-                           </div>
-                        </div>
-                        <div class="containers right">
-                           <div class="content">
-                              <p><span class="duration">Jul 2016 - Oct 2017</span><br><b>Associate Technical Services Engineer</b></p>
-                               <h6>Catchpoint Systems | Bangalore</h6>
-                               <ul style="font-size: 0.85rem; margin-top: 0.5rem;">
-                                 <li>Developed automated testing solutions for web applications</li>
-                                 <li>Analyzed and troubleshot application performance issues</li>
-                                 <li>Collaborated with engineering teams on product quality initiatives</li>
-                              </ul>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </section>
-               <section class="skills">
-                  <div class="info">
-                     <h5><b>// Skills & Technologies</b></h5>
-                     <h6>Languages & Frameworks: </h6>
-                     <ul>
-                        <li>Python</li>
-                        <li>JavaScript</li>
-                        <li>Bash</li>
-                        <li>TypeScript</li>
-                        <li>Flask</li>
-                        <li>FastAPI</li>
-                        <li>ReactJS</li>
-                     </ul>
-                     <h6>Networking & Protocols: </h6>
-                     <ul>
-                        <li>HTTP</li>
-                        <li>DNS</li>
-                        <li>TCP/IP</li>
-                        <li>CDN</li>
-                        <li>SSL</li>
-                        <li>Traceroute</li>
-                     </ul>
-                     <h6>Platforms & Observability: </h6>
-                     <ul>
-                        <li>Linux</li>
-                        <li>Kubernetes</li>
-                        <li>AWS</li>
-                        <li>Azure</li>
-                        <li>DigitalOcean</li>
-                        <li>Prometheus</li>
-                        <li>OpenTelemetry</li>
-                        <li>Catchpoint</li>
-                        <li>Grafana</li>
-                        <li>Kafka</li>
-                     </ul>
-                     <h6>Databases & Automation: </h6>
-                     <ul>
-                        <li>MySQL</li>
-                        <li>PostgreSQL</li>
-                        <li>GitHub Actions</li>
-                        <li>Jira</li>
-                        <li>Git</li>
-                        <li>Ansible</li>
-                     </ul>
-                  </div>
-                  </section>
-                  <section class="projects">
-                     <div class="info">
-                        <h5><b>// Projects & Publications</b></h5>
-                        <h6>Freelance Project:</h6>
-                        <p><b>Online Bingo-Style Game</b> - Interactive number-drawing game with 500+ users, Python Flask backend, PostgreSQL, and jQuery frontend</p>
-                        <br>
-                        <h6>Academic Projects:</h6>
-                        <p><b>E-commerce Review Analysis</b> - Data mining project using Java and MySQL for sentiment analysis</p>
-                        <p><b>Shoot the Objects Game</b> - Built with OpenGL and C for 3D rendering</p>
-                        <br>
-                        <h6>Published Blogs:</h6>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">October 2021 - Present</div>
+                    <div class="timeline-role">Senior Site Reliability Engineer, Infrastructure</div>
+                    <div class="timeline-company">LinkedIn | Bangalore, India</div>
+                    <div class="timeline-description">
                         <ul>
-                           <li>Azure Network Watcher Integration with Catchpoint</li>
-                           <li>A/B testing and Web performance</li>
+                            <li>Designed capacity management platform reducing infrastructure costs significantly</li>
+                            <li>Developed observability tools reducing detection time for system failures</li>
+                            <li>Implemented distributed tracing for critical microservices</li>
+                            <li>Built monitoring dashboards and data sources for centralized systems</li>
+                            <li>Led incident response and cross-functional engineering projects</li>
                         </ul>
-                     </div>
-                  </section>
-                  <section class="education">
-                     <div class="info">
-                        <h5><b>// Education</b></h5>
-                           <p><span class="duration">2016</span><br><b>Bachelor of Engineering, Computer Science and Engineering</b></p>
-                           <h6>Visvesvaraya Technological University, Karnataka</h6>
-                        </div>
-                  </section>
-                  <section class="contact">
-                     <div class="info">
-                         <h5><b>// Contact</b></h5>
-                           <h6>Mobile: </h6>
-                           <p>+91 9738623898</p>
-                           <br>
-                           <h6>Email: </h6>
-                           <p>supongkichu14@gmail.com</p>
-                           <br>
-                           <h6>LinkedIn: </h6>
-                           <p>linkedin.com/in/supong/</p>
-                     </div>
-                  </section>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">February 2019 - September 2021</div>
+                    <div class="timeline-role">Site Reliability Engineer, Infrastructure</div>
+                    <div class="timeline-company">LinkedIn | Bangalore, India</div>
+                    <div class="timeline-description">
+                        <ul>
+                            <li>Built automated testing systems for traffic management</li>
+                            <li>Performed system upgrades and migrations across multiple services</li>
+                            <li>Developed alerting frameworks for anomaly detection</li>
+                            <li>Created monitoring platforms with real-time analytics</li>
+                            <li>Built automation tools for network monitoring and alerting</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">November 2017 - January 2019</div>
+                    <div class="timeline-role">Technical Services Engineer</div>
+                    <div class="timeline-company">Catchpoint Systems | Bangalore, India</div>
+                    <div class="timeline-description">
+                        <ul>
+                            <li>Developed performance monitoring solutions for web applications</li>
+                            <li>Built monitoring integrations using various protocols and tools</li>
+                            <li>Integrated platform tools with configuration management systems</li>
+                            <li>Developed APIs for test automation and management</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">July 2016 - October 2017</div>
+                    <div class="timeline-role">Associate Technical Services Engineer</div>
+                    <div class="timeline-company">Catchpoint Systems | Bangalore, India</div>
+                    <div class="timeline-description">
+                        <ul>
+                            <li>Developed automated testing solutions for web applications</li>
+                            <li>Analyzed and troubleshot application performance issues</li>
+                            <li>Collaborated with engineering teams on product quality initiatives</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-         </div>
-      </div>
-   </body>
+        </div>
+    </section>
+
+    <section id="skills" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Skills</h2>
+                <p class="section-subtitle">
+                    Expertise across programming languages, platforms, and modern engineering practices
+                </p>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Languages & Frameworks</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">TypeScript</span>
+                        <span class="skill-tag">Bash</span>
+                        <span class="skill-tag">Flask</span>
+                        <span class="skill-tag">FastAPI</span>
+                        <span class="skill-tag">ReactJS</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Cloud & Infrastructure</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Linux</span>
+                        <span class="skill-tag">Kubernetes</span>
+                        <span class="skill-tag">AWS</span>
+                        <span class="skill-tag">Azure</span>
+                        <span class="skill-tag">DigitalOcean</span>
+                        <span class="skill-tag">Ansible</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Observability & Monitoring</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Prometheus</span>
+                        <span class="skill-tag">OpenTelemetry</span>
+                        <span class="skill-tag">Grafana</span>
+                        <span class="skill-tag">Catchpoint</span>
+                        <span class="skill-tag">Kafka</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Networking & Protocols</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">HTTP/HTTPS</span>
+                        <span class="skill-tag">DNS</span>
+                        <span class="skill-tag">TCP/IP</span>
+                        <span class="skill-tag">CDN</span>
+                        <span class="skill-tag">SSL/TLS</span>
+                        <span class="skill-tag">Traceroute</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Databases & DevOps</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">MySQL</span>
+                        <span class="skill-tag">PostgreSQL</span>
+                        <span class="skill-tag">GitHub Actions</span>
+                        <span class="skill-tag">Git</span>
+                        <span class="skill-tag">Jira</span>
+                        <span class="skill-tag">CI/CD</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Projects</h2>
+                <p class="section-subtitle">
+                    A showcase of technical projects demonstrating full-stack development and system design skills
+                </p>
+            </div>
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
+                    <div class="card-title">Online Bingo Platform</div>
+                    <div class="card-content">
+                        Interactive multiplayer gaming platform serving 500+ concurrent users. Built with Python Flask backend, 
+                        PostgreSQL for data persistence, and jQuery for dynamic frontend interactions. Features real-time game 
+                        logic, user authentication, and automated result processing.
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="card-title">E-commerce Analytics Engine</div>
+                    <div class="card-content">
+                        Advanced data mining solution for extracting insights from customer reviews. Implemented using Java 
+                        and MySQL with sophisticated algorithms for product feature extraction and sentiment analysis. 
+                        Processed thousands of reviews to generate actionable business intelligence.
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-cube"></i>
+                    </div>
+                    <div class="card-title">3D Graphics Engine</div>
+                    <div class="card-content">
+                        High-performance 3D rendering engine built with OpenGL and C. Demonstrates advanced computer graphics 
+                        concepts including object transformation, lighting models, and real-time rendering. Showcases 
+                        low-level programming expertise and mathematical precision.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Contact</h2>
+                <p class="section-subtitle">
+                    Let's discuss opportunities, collaborations, or interesting technical challenges
+                </p>
+            </div>
+            <div class="contact-section">
+                <div class="contact-grid">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-info">
+                            <h4>Phone</h4>
+                            <p>+91 9738623898</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-info">
+                            <h4>Email</h4>
+                            <p>supongkichu14@gmail.com</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fab fa-linkedin"></i>
+                        </div>
+                        <div class="contact-info">
+                            <h4>LinkedIn</h4>
+                            <p>linkedin.com/in/supong/</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div class="contact-info">
+                            <h4>Education</h4>
+                            <p>B.E. Computer Science Engineering (2016)<br>Visvesvaraya Technological University</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Supongkiba Kichu. Built with passion for code and innovation.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Matrix rain effect
+        function createMatrixRain() {
+            const chars = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
+            const matrixBg = document.getElementById('matrixBg');
+            
+            for (let i = 0; i < 50; i++) {
+                const char = document.createElement('div');
+                char.className = 'matrix-char';
+                char.textContent = chars[Math.floor(Math.random() * chars.length)];
+                char.style.left = Math.random() * 100 + '%';
+                char.style.animationDelay = Math.random() * 10 + 's';
+                char.style.animationDuration = (Math.random() * 10 + 5) + 's';
+                matrixBg.appendChild(char);
+            }
+        }
+
+        // Initialize matrix effect
+        createMatrixRain();
+
+        // Smooth scrolling for social links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Enhanced hover effects for skill tags
+        document.querySelectorAll('.skill-tag').forEach(tag => {
+            tag.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-3px) scale(1.05)';
+            });
+            
+            tag.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.querySelectorAll('.card, .timeline-item, .skill-category').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            observer.observe(el);
+        });
+
+        // Terminal typing effect
+        function typeWriter(element, text, speed = 50) {
+            let i = 0;
+            function type() {
+                if (i < text.length) {
+                    element.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                }
+            }
+            type();
+        }
+
+        // Add some dynamic effects on page load
+        window.addEventListener('load', () => {
+            // Add glowing effect to profile image on hover
+            const profileImage = document.querySelector('.profile-image');
+            profileImage.addEventListener('mouseenter', () => {
+                profileImage.style.filter = 'brightness(1.2) drop-shadow(0 0 30px rgba(0, 255, 65, 0.6))';
+            });
+            
+            profileImage.addEventListener('mouseleave', () => {
+                profileImage.style.filter = 'brightness(1) drop-shadow(0 0 20px rgba(0, 255, 65, 0.4))';
+            });
+        });
+    </script>
+</body>
 </html>
