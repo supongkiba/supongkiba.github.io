@@ -5,25 +5,47 @@
       <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
       <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
       <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-      <link href="https://fonts.googleapis.com/css?family=Hind" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css?family=Fira+Code:300,400,700|Source+Code+Pro:300,400,700" rel="stylesheet">
       <style type="text/css">
          body{
-            font-family: 'Hind', sans-serif;
-            font-size: 15px;
+            font-family: 'Fira Code', 'Source Code Pro', monospace;
+            font-size: 14px;
             line-height: 1.6em;
             font-weight: 300;
-            letter-spacing: 1;
-            background-color: #000000;
-            color:#ffffff;
+            letter-spacing: 0.5px;
+            background-color: #0a0a0a;
+            background-image: 
+               radial-gradient(circle at 1px 1px, #00ff41 1px, transparent 0);
+            background-size: 20px 20px;
+            color:#00ff41;
+            position: relative;
+         }
+         body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+               linear-gradient(90deg, transparent 50%, rgba(0, 255, 65, 0.03) 50%),
+               linear-gradient(rgba(0, 255, 65, 0.03) 50%, transparent 50%);
+            background-size: 2px 2px;
+            pointer-events: none;
+            z-index: 1;
          }
          p{
             margin:0;
          }
          b{
             font-weight: 700;
+            color: #00ff41;
+            text-shadow: 0 0 5px #00ff41;
          }
          section{
             padding: .2em;
+            position: relative;
+            z-index: 2;
          }
          .intro{
             width: 50%;
@@ -31,45 +53,72 @@
             position: fixed;
             height: 100vh;
             text-align: center;
-            color: #ffffff;
+            color: #00ff41;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            border-right: 2px solid #00ff41;
+            box-shadow: inset -5px 0 10px rgba(0, 255, 65, 0.1);
          }
          .intro p{
-            color: #ffffff89;
+            color: #00cc33;
          }
          .intro-content{
             width: 100%;
          }
          .intro-content h2{
-            padding-top: 1em
+            padding-top: 1em;
+            font-family: 'Fira Code', monospace;
+            text-shadow: 0 0 10px #00ff41;
+            position: relative;
+         }
+         .intro-content h2::after {
+            content: '_';
+            animation: blink 1s infinite;
+            color: #00ff41;
+         }
+         @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+         }
+         .terminal-prompt::before {
+            content: '$ ';
+            color: #00ff41;
+            font-weight: bold;
          }
          .main{
             width: 50%;
             left: 50%;
-            float: left;
-            position: relative;
+            position: fixed;
             padding: 0;
-            border-left: 1px solid #ffffff1f;
+            border-left: 2px solid #00ff41;
+            background: rgba(0, 0, 0, 0.8);
+            height: 100vh;
+            overflow-y: auto;
+            transition: all 0.3s ease;
          }
          @media only screen and (max-width: 600px) {
             .intro{
                width: 100%;
-               background: green;
+               background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
                height: 100vh;
                position: relative;
                text-align: center;
-               color: #ffffffb8;
+               color: #00ff41;
+               border-right: none;
+               border-bottom: 2px solid #00ff41;
             }
             .main{
                width: 100%;
                left: 0%;
                position: relative;
                border-left: none;
+               border-top: 2px solid #00ff41;
          }
          }
          .picture-wrap{
             height: 15.5rem;
             margin-top: 10rem;
             margin: 10rem auto auto auto;
+            position: relative;
          }
          #picture{
             width: 15rem;
@@ -77,6 +126,49 @@
             border-radius: 50%;
             object-fit: cover;
             object-position: center;
+            border: 3px solid #00ff41;
+            box-shadow: 
+               0 0 20px rgba(0, 255, 65, 0.5),
+               0 0 40px rgba(0, 255, 65, 0.3),
+               0 0 60px rgba(0, 255, 65, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+         }
+         #picture::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 50%;
+            background: 
+               linear-gradient(45deg, transparent 30%, rgba(0, 255, 65, 0.1) 50%, transparent 70%),
+               radial-gradient(circle at 30% 30%, rgba(0, 255, 65, 0.2) 2px, transparent 3px);
+            background-size: 20px 20px, 10px 10px;
+            animation: matrix-scan 3s linear infinite;
+            pointer-events: none;
+         }
+         #picture:hover {
+            transform: scale(1.05);
+            box-shadow: 
+               0 0 30px rgba(0, 255, 65, 0.7),
+               0 0 60px rgba(0, 255, 65, 0.5),
+               0 0 90px rgba(0, 255, 65, 0.3);
+         }
+         @keyframes matrix-scan {
+            0% { 
+               background-position: 0 0, 0 0;
+               opacity: 0.7;
+            }
+            50% { 
+               background-position: 20px 20px, 10px 10px;
+               opacity: 1;
+            }
+            100% { 
+               background-position: 40px 40px, 20px 20px;
+               opacity: 0.7;
+            }
          }
          .social-icon {
             display: block;
@@ -91,16 +183,50 @@
             padding: .5rem;
             display: block;
             font-size: 12px;
-            color: #ffffff;
+            color: #00ff41;
             width: 34px;
             height: 34px;
             line-height: 33px;
             text-align: center;
             border-radius: 100%;
-            border: 2px solid rgba(255, 255, 255, .2);
+            border: 2px solid #00ff41;
+            transition: all 0.3s ease;
+            background: rgba(0, 255, 65, 0.1);
+         }
+         .social-icon li a:hover {
+            background: #00ff41;
+            color: #000;
+            box-shadow: 0 0 15px #00ff41;
+            transform: scale(1.1);
          }
          .info{
             margin: 2em 3em 2em 3em;
+            background: rgba(0, 20, 5, 0.8);
+            padding: 1.5rem;
+            border: 1px solid #00ff41;
+            border-radius: 15px;
+            position: relative;
+         }
+         .info::before {
+            content: '/* ';
+            position: absolute;
+            top: 5px;
+            left: 10px;
+            color: #006622;
+            font-size: 12px;
+         }
+         .info::after {
+            content: ' */';
+            position: absolute;
+            bottom: 5px;
+            right: 10px;
+            color: #006622;
+            font-size: 12px;
+         }
+         .info h5 {
+            color: #00ff41;
+            text-shadow: 0 0 5px #00ff41;
+            margin-bottom: 1rem;
          }
          .timeline {
             position: relative;
@@ -111,11 +237,12 @@
             content: '';
             position: absolute;
             width: 6px;
-            background-color: #ffffff;
+            background: linear-gradient(to bottom, #00ff41, #006622);
             top: 0;
             bottom: 0;
             left: 50%;
             margin-left: -3px;
+            box-shadow: 0 0 10px #00ff41;
          }
          .containers {
             padding: 10px 40px;
@@ -129,11 +256,12 @@
             width: 25px;
             height: 25px;
             right: -13px;
-            background-color: white;
-            border: 2px solid white;
+            background: radial-gradient(circle, #00ff41, #006622);
+            border: 2px solid #00ff41;
             top: 15px;
             border-radius: 50%;
             z-index: 1;
+            box-shadow: 0 0 10px #00ff41;
          }
          .left {
             left: 0;
@@ -149,9 +277,9 @@
             width: 0;
             z-index: 1;
             right: 30px;
-            border: medium solid white;
+            border: medium solid #00ff41;
             border-width: 10px 0 10px 10px;
-            border-color: transparent transparent transparent white;
+            border-color: transparent transparent transparent #00ff41;
          }
          .right::before {
             content: " ";
@@ -161,9 +289,9 @@
             width: 0;
             z-index: 1;
             left: 30px;
-            border: medium solid white;
+            border: medium solid #00ff41;
             border-width: 10px 10px 10px 0;
-            border-color: transparent white transparent transparent;
+            border-color: transparent #00ff41 transparent transparent;
          }
          .right::after {
             left: -13px;
@@ -173,10 +301,12 @@
             padding-right: 1rem;
             padding-top: .5rem;
             padding-bottom: .5rem;
-            background-color: #9294982b;
+            background: rgba(0, 20, 5, 0.9);
             position: relative;
-            border-radius: 6px;
-            color:#ffffff;
+            border-radius: 15px;
+            color:#00ff41;
+            border: 1px solid #00ff41;
+            box-shadow: 0 0 10px rgba(0, 255, 65, 0.3);
          }
          @media screen and (max-width: 1350px) {
             .timeline::after {
@@ -189,9 +319,9 @@
             }
             .containers::before {
                left: 60px;
-               border: medium solid white;
+               border: medium solid #00ff41;
                border-width: 10px 10px 10px 0;
-               border-color: transparent white transparent transparent;
+               border-color: transparent #00ff41 transparent transparent;
             }
             .left::after, .right::after {
                left: 18px;
@@ -205,84 +335,143 @@
          }
          .skills li{
             display: inline;
-            
+            background: rgba(0, 255, 65, 0.1);
+            padding: 2px 6px;
+            margin: 2px;
+            border-radius: 8px;
+            border: 1px solid #006622;
          }
          .skills h6 {
             font-weight: 700 !important;
-            color: #ffffff89;
+            color: #00cc33;
+            text-shadow: 0 0 5px #00cc33;
          }
          .contact h6{
             font-weight: 700 !important;
-            color: #ffffff89;
+            color: #00cc33;
+            text-shadow: 0 0 5px #00cc33;
          }
          .experience h6{
-            color:#ffffff89;
+            color:#00cc33;
+            text-shadow: 0 0 3px #00cc33;
          }
          .duration{
             font-size: .8rem;
-            color:#ffffff69;
+            color:#00ff41;
+            background: rgba(0, 255, 65, 0.1);
+            padding: 2px 6px;
+            border-radius: 8px;
+            border: 1px solid #006622;
          }
           .education h6{
-            color:#ffffff89;
+            color:#00cc33;
             font-size: 0.9rem;
+            text-shadow: 0 0 3px #00cc33;
          }
         .education .duration{
             font-size: .8rem;
-            color:#ffffff89;
+            color:#00ff41;
+            background: rgba(0, 255, 65, 0.1);
+            padding: 2px 6px;
+            border-radius: 8px;
+            border: 1px solid #006622;
+         }
+         .ascii-art {
+            font-family: 'Fira Code', monospace;
+            font-size: 8px;
+            color: #006622;
+            white-space: pre;
+            text-align: center;
+            margin: 10px 0;
          }
       </style>
    </head>
    <body>
       <div class="container-fluid">
          <div class="row">
-            <div class="col-xs-6 col-sm-6 col-lg-6 intro" style="background-color:#000000;">
+            <div class="col-xs-6 col-sm-6 col-lg-6 intro" id="intro-panel" style="background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);">
                <div class="intro-content">
+               <div class="ascii-art">
+    _____ _   _ ____   ___  _   _  _____ 
+  / ____| | | |  _ \ / _ \| \ | |/ ____|
+ | (___ | | | | |_) | | | |  \| | |  __ 
+  \___ \| | | |  _ /| | | | . ` | | |_ |
+  ____) | |_| | |   | |_| | |\  | |__| |
+ |_____/ \___/|_|    \___/|_| \_|\_____|
+               </div>
                <div class="picture-wrap">
                   <img id="picture" src="img/profile.jpg">
                </div>
-               <h2>
+               <h2 class="terminal-prompt">
                   SUPONGKIBA KICHU
                </h2>
+               <p style="font-family: 'Fira Code', monospace;">[SOFTWARE_ENGINEER]</p>
                <ul class="social-icon">
                   <li><a href="https://www.facebook.com/supongkiba/"><i class="fa fa-facebook"></i></a></li>
                   <li><a href="https://twitter.com/_supong_kichu"><i class="fa fa-twitter"></i></a></li>
-                  <li><a href="https://www.linkedin.com/in/supongkiba-kichu-611784ba/"><i class="fa fa-linkedin"></i></a></li>
+                  <li><a href="https://www.linkedin.com/in/supong/"><i class="fa fa-linkedin"></i></a></li>
                   <li><a href="https://www.instagram.com/"><i class="fa fa-instagram"></i></a></li>
                </ul>
             </div>
             </div>
-            <div class="col-xs-6 col-sm-6 col-lg-6 main">
+            <div class="col-xs-6 col-sm-6 col-lg-6 main" id="main-panel">
                <section class="summary">
                   <div class="info">
-                  <h5><b>What Am I About</b></h5>
-                    <p>I am  currently working as a SiteOps Engineer at Linkedin, with a strong background in building and implementing solutions for monitoring & keeping the site up and reliable. 
-                    I am passionate about Full Stack Web Development, Automation, Site Relialbility Engineering & Digital Performance Analytics. 
-                    I hail from the Indian state of Nagaland and currently residing in Bangalore city. 
-                    </p>
+                  <h5><b>// Summary</b></h5>
+                    <p>Passionate Senior Engineer with 8+ years of experience in Reliability Engineering, Large-scale distributed systems, Observability, Monitoring, Operations and Incident Management. Proven expertise in designing and building end-to-end scalable observability solutions, building resilient architectures, and improving system reliability. Adept at troubleshooting critical incidents and driving cross functional initiatives to enhance platform health at scale.</p>
               </div>
                </section>
                <section class="experience">
                   <div class="info">
-                     <h5><b> Work Experience</b></h4>
+                     <h5><b>// Work Experience</b></h5>
                      <div class="timeline">
                         <div class="containers left">
                            <div class="content">
-                              <p><span class="duration">Feb 2019 - Present</span><br><b>SiteOps Engineer</b></p>
-                              <h6>LinkedIn</h6>
+                              <p><span class="duration">Oct 2021 - Present</span><br><b>Senior Site Reliability Engineer, Infra</b></p>
+                              <h6>LinkedIn | Bangalore</h6>
+                              <ul style="font-size: 0.85rem; margin-top: 0.5rem;">
+                                 <li>Designed capacity management platform reducing infrastructure costs significantly</li>
+                                 <li>Developed observability tools reducing detection time for system failures</li>
+                                 <li>Implemented distributed tracing for critical microservices</li>
+                                 <li>Built monitoring dashboards and data sources for centralized systems</li>
+                                 <li>Led incident response and cross-functional engineering projects</li>
+                              </ul>
                            </div>
                         </div>
                         <div class="containers right">
                            <div class="content">
-                             
-                              <p><span class="duration">Nov 2017 - Jan 2019</span><br><b>Technical Services Engineer/ Technical Account Manager </b></p>
-                               <h6>Catchpoint Systems</h6>
+                              <p><span class="duration">Feb 2019 - Sep 2021</span><br><b>Site Reliability Engineer, Infra</b></p>
+                               <h6>LinkedIn | Bangalore</h6>
+                               <ul style="font-size: 0.85rem; margin-top: 0.5rem;">
+                                 <li>Built automated testing systems for traffic management</li>
+                                 <li>Performed system upgrades and migrations across multiple services</li>
+                                 <li>Developed alerting frameworks for anomaly detection</li>
+                                 <li>Created monitoring platforms with real-time analytics</li>
+                                 <li>Built automation tools for network monitoring and alerting</li>
+                              </ul>
                            </div>
                         </div>
                         <div class="containers left">
                            <div class="content">
-                             
-                              <p><span class="duration">July 2016 - Nov 2017</span><br><b>Associate Technical Services Engineer</b></p>
-                               <h6>Catchpoint Systems</h6>
+                              <p><span class="duration">Nov 2017 - Jan 2019</span><br><b>Technical Services Engineer</b></p>
+                               <h6>Catchpoint Systems | Bangalore</h6>
+                               <ul style="font-size: 0.85rem; margin-top: 0.5rem;">
+                                 <li>Developed performance monitoring solutions for web applications</li>
+                                 <li>Built monitoring integrations using various protocols and tools</li>
+                                 <li>Integrated platform tools with configuration management systems</li>
+                                 <li>Developed APIs for test automation and management</li>
+                              </ul>
+                           </div>
+                        </div>
+                        <div class="containers right">
+                           <div class="content">
+                              <p><span class="duration">Jul 2016 - Oct 2017</span><br><b>Associate Technical Services Engineer</b></p>
+                               <h6>Catchpoint Systems | Bangalore</h6>
+                               <ul style="font-size: 0.85rem; margin-top: 0.5rem;">
+                                 <li>Developed automated testing solutions for web applications</li>
+                                 <li>Analyzed and troubleshot application performance issues</li>
+                                 <li>Collaborated with engineering teams on product quality initiatives</li>
+                              </ul>
                            </div>
                         </div>
                      </div>
@@ -290,60 +479,85 @@
                </section>
                <section class="skills">
                   <div class="info">
-                     <h5><b>Skills</b></h5>
+                     <h5><b>// Skills & Technologies</b></h5>
+                     <h6>Languages & Frameworks: </h6>
                      <ul>
-                        <li>C,</li>
-                        <li>Python,</li>
-                        <li>JavaScript(ES6),</li>
-                        <li>TypeScript,</li>
-                        <li>VueJS,</li>
-                        <li>JQuery,</li>
-                        <li>HTML,</li>
-                        <li>CSS,</li>
-                        <li>Selenium,</li>
-                        <li>Shell Script,</li>
-                        <li>MySQL.</li>
+                        <li>Python</li>
+                        <li>JavaScript</li>
+                        <li>Bash</li>
+                        <li>TypeScript</li>
+                        <li>Flask</li>
+                        <li>FastAPI</li>
+                        <li>ReactJS</li>
                      </ul>
+                     <h6>Networking & Protocols: </h6>
                      <ul>
-                        <li>LINUX,</li>
-                        <li>DNS,</li>
-                        <li>TCP/IP,</li>
-                        <li>HTTP,</li>
-                        <li>SSL,</li>
-                        <li>SNMP,</li>
-                        <li>OSI Layers,</li>
-                        <li>Heroku,</li>
+                        <li>HTTP</li>
+                        <li>DNS</li>
+                        <li>TCP/IP</li>
+                        <li>CDN</li>
+                        <li>SSL</li>
+                        <li>Traceroute</li>
+                     </ul>
+                     <h6>Platforms & Observability: </h6>
+                     <ul>
+                        <li>Linux</li>
+                        <li>Kubernetes</li>
+                        <li>AWS</li>
                         <li>Azure</li>
+                        <li>DigitalOcean</li>
+                        <li>Prometheus</li>
+                        <li>OpenTelemetry</li>
+                        <li>Catchpoint</li>
+                        <li>Grafana</li>
+                        <li>Kafka</li>
                      </ul>
-                     <h6>Others: </h6>
+                     <h6>Databases & Automation: </h6>
                      <ul>
-                        <li>Synthetic Monitoring,</li>
-                        <li>Real User Monitoring,</li>
-                        <li>Application Performance Monitoring,</li>
-                        <li>Cloud Computing,</li>
-                        <li>GIT,</li>
-                        <li>Incident Managements,</li>
-                        <li>CI/CD,</li>
-                        <li>Software Development Lifecycle,</li>
-                        <li>Technical Support.</li>
+                        <li>MySQL</li>
+                        <li>PostgreSQL</li>
+                        <li>GitHub Actions</li>
+                        <li>Jira</li>
+                        <li>Git</li>
+                        <li>Ansible</li>
                      </ul>
                   </div>
                   </section>
+                  <section class="projects">
+                     <div class="info">
+                        <h5><b>// Projects & Publications</b></h5>
+                        <h6>Freelance Project:</h6>
+                        <p><b>Online Bingo-Style Game</b> - Interactive number-drawing game with 500+ users, Python Flask backend, PostgreSQL, and jQuery frontend</p>
+                        <br>
+                        <h6>Academic Projects:</h6>
+                        <p><b>E-commerce Review Analysis</b> - Data mining project using Java and MySQL for sentiment analysis</p>
+                        <p><b>Shoot the Objects Game</b> - Built with OpenGL and C for 3D rendering</p>
+                        <br>
+                        <h6>Published Blogs:</h6>
+                        <ul>
+                           <li>Azure Network Watcher Integration with Catchpoint</li>
+                           <li>A/B testing and Web performance</li>
+                        </ul>
+                     </div>
+                  </section>
                   <section class="education">
                      <div class="info">
-                        <h5><b>Education</b></h5>
-                           <p><span class="duration">2016</span><br><b>BTech, Computer Science and Engineering</b></p>
-                           <h6>Bapuji Institute of Engineering and Technology</h6>
+                        <h5><b>// Education</b></h5>
+                           <p><span class="duration">2016</span><br><b>Bachelor of Engineering, Computer Science and Engineering</b></p>
+                           <h6>Visvesvaraya Technological University, Karnataka</h6>
                         </div>
                   </section>
                   <section class="contact">
                      <div class="info">
-                         <h5><b>Contact</b></h5>
+                         <h5><b>// Contact</b></h5>
                            <h6>Mobile: </h6>
-                           <p>+919738623798</p>
+                           <p>+91 9738623898</p>
                            <br>
                            <h6>Email: </h6>
-                           <p>Supongkichu14@gmail.com</p>
+                           <p>supongkichu14@gmail.com</p>
+                           <br>
+                           <h6>LinkedIn: </h6>
+                           <p>linkedin.com/in/supong/</p>
                      </div>
                   </section>
             </div>
